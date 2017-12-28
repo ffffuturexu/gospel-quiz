@@ -82,7 +82,7 @@ var $indicators = $('<ol>')
 
   $("<button>")
     .attr('class', 'quiz-button btn')
-    .text("Take the quiz!")
+    .text("开始测试！")
     .click(function() {
       $quiz.carousel('next');
       $indicators.addClass('show');
@@ -161,7 +161,7 @@ var $indicators = $('<ol>')
       var opts = {
         allowOutsideClick : false,
         allowEscapeKey : false,
-        confirmButtonText: "Next Question",
+        confirmButtonText: "下一题",
         html : true,
         confirmButtonColor: "#0096D2"
       };
@@ -171,7 +171,7 @@ var $indicators = $('<ol>')
       if (correct) {
         opts = $.extend(opts, {
           title: "Nice!",
-          text: "Well done" + (
+          text: "答对了" + (
             question.correct.text ?
             ("<div class=\"correct-text\">" +
               question.correct.text +
@@ -183,8 +183,8 @@ var $indicators = $('<ol>')
         opts = $.extend(opts, {
           title: "Drat",
           text: (
-            "Nope, not quite right!<br/><br/>" +
-            "The correct answer was \"" +
+            "答错了<br/><br/>" +
+            "正确答案是 \"" +
             question.answers[question.correct.index] + "\"." + (
             question.correct.text ?
             ("<div class=\"correct-text\">" +
@@ -197,7 +197,7 @@ var $indicators = $('<ol>')
       }
 
       if (last_question) {
-        opts.confirmButtonText = "See your results";
+        opts.confirmButtonText = "查看成绩";
       }
 
       // bind click event to answer button,
@@ -215,9 +215,9 @@ var $indicators = $('<ol>')
           if (last_question) {
             $results_title.html(resultsText(state));
             $results_ratio.text(
-              "You got " +
+              "你答对了 " +
               Math.round(100*(state.correct/state.total)) +
-              "% of the questions correct!"
+              "% 的题目"
             );
             $twitter_link.attr('href', tweet(state, quiz_opts));
             $facebook_link.attr('href', facebook(state, quiz_opts));
@@ -284,7 +284,7 @@ var $indicators = $('<ol>')
 
   $("<button>")
     .attr('class', 'quiz-button btn')
-    .text("Try again?")
+    .text("再来一次？")
     .click(function() {
       state.correct = 0;
       $quiz.carousel(0);
@@ -309,22 +309,22 @@ function resultsText(state) {
 
   switch (true) {
     case (ratio === 1):
-      text = "Wow&mdash;perfect score!";
+      text = "满分！";
       break;
     case (ratio > 0.9):
-      text = "Awesome job, you got most of them right.";
+      text = "棒极了！差一点就全对了";
       break;
     case (ratio > 0.60):
-      text = "Pretty good, we'll say that's a pass.";
+      text = "恭喜及格了！";
       break;
     case (ratio > 0.5):
-      text = "Well, at least you got half of them right&hellip;";
+      text = "不错，至少对了一半";
       break;
     case (ratio < 0.5 && ratio !== 0):
-      text = "Looks like this was a tough one, better luck next time.";
+      text = "看起来有点儿难，下次加油！";
       break;
     case (ratio === 0):
-      text = "Yikes, none correct. Well, maybe it was rigged?";
+      text = "哎呀，全都错了…";
       break;
   }
   return text;
