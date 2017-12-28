@@ -2,7 +2,7 @@
 
 ## Example
 
-See an [example quiz](http://urbaninstitute.github.io/quick-quiz/)
+See an [example quiz](http://ffffuturexu.github.io/gospel-quiz)
 
 ## Usage
 
